@@ -10,12 +10,20 @@ const userSchema= new mongoose.Schema({
     required: true,
     unique: true
   },
-  age: {
-    type: Number,
-    required: false
-  }
+  password:{
+    type:String,
+    required:true,
+  },
+   confirm_password:{
+    type:String,
+    required:true,
+  },
+  // age: {
+  //   type: Number,
+  //   required: false
+  // }
 });
 
-const User = mongoose.model('signup_users', userSchema);
+const SignupUser = mongoose.model('signup_users', userSchema);
 
-module.exports = User;
+module.exports = SignupUser;
