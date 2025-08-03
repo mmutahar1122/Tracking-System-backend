@@ -4,7 +4,12 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const User = require('../models/signupuser'); 
 const reservedSeat = require('../models/seatBooking');
-const AlertMessage = require('../models/passengerEmergencyMsg')
+const AlertMessage = require('../models/passengerEmergencyMsg');
+require('dotenv').config();
+const jwt = require('jsonwebtoken');
+const JWT_SECRET = process.env.JWT_SECRET;
+
+
 
 
 router.post('/users', async (req, res) => {
@@ -43,13 +48,25 @@ try {
   }
    try {
     const user = await User.findOne({ email });
+    console.log("user",user)
 
     if (user) {
       const isMatch= await bcrypt.compare(password, user.password);
        if(!isMatch){
         return res.status(401).json({ message: 'Invalid email or password' });
       }
-     return res.status(200).json({ message: 'Login successful' });
+
+      const payload = {
+    id: user.id,
+    email: user.email
+  };
+
+    // Sign JWT
+  const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' });
+
+  console.log("JWT is:", typeof jwt); // Should log "object"
+
+     return res.json({ message: 'Login successful', token });
 
     } else {
       return res.status(404).json({ message: "User not found", exists: false }); // ✅ 404
