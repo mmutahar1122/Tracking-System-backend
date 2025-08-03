@@ -122,7 +122,7 @@ router.post('/alert-message', async (req, res) => {
         const { name, email, message, busNo } = req.body;
 
         // Optional double-check before schema validation
-        if (!name || !email || !message || !busNo) {
+        if (!name || !message || !busNo) {
             return res.status(400).json({ error: 'All fields are required' });
         }
 
