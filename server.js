@@ -17,6 +17,8 @@ connectDB();
 
 app.use('/api/auth', authRoutes);
 // app.use('/api', userRoutes);
+// app.use('/api/seats', seatRoutes);
+// app.use('/api/alerts', alertRoutes);
 app.use('/api/seats', seatRoutes);
 app.use('/api/alerts', alertRoutes);
 
