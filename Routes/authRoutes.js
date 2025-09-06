@@ -3,6 +3,8 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/signupuser');
+const Driver = require('../models/signupdriver');
+
 require('dotenv').config();
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -36,6 +38,8 @@ try {
 
 }
    );
+
+   
 
    router.post('/signin',async(req,res)=>{
     const {email, password} = req.body;

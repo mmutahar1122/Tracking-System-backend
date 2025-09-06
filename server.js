@@ -4,8 +4,9 @@ const app = express();
 const cors = require('cors')
 const routes = require('./Routes/routes')
 const authRoutes = require('./Routes/authRoutes');
+const authRoutesdriver = require('./Routes/driverRoutes');
 // const userRoutes = require('./Routes/userRoutes');
-const feedback = require()
+const feedback = require('./Routes/userFeedback')
 const seatRoutes = require('./Routes/seatRoutes');
 const alertRoutes = require('./Routes/alertRoutes');
 const port = 3005;
@@ -16,6 +17,7 @@ connectDB();
 
 
 app.use('/api/auth', authRoutes);
+app.use('/api/auth', authRoutesdriver);
 // app.use('/api', userRoutes);
 // app.use('/api/seats', seatRoutes);
 // app.use('/api/alerts', alertRoutes);
